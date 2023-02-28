@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
-import 'dart:ui';
 
 import 'package:flutter_js/flutter_js.dart';
 import 'package:sync_http/sync_http.dart';
 
 ReceivePort _callDartReceivePort = new ReceivePort();
+
+// IsolateNameServer is part of dart:ui from flutter core.
+dynamic IsolateNameServer;
 
 void _setupCallDartPorts() {
   IsolateNameServer.registerPortWithName(

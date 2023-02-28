@@ -1,14 +1,12 @@
-import 'package:flutter/services.dart';
+import 'dart:io';
+
 import 'package:flutter_js/flutter_js.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('flutter_js');
-
-  TestWidgetsFlutterBinding.ensureInitialized();
-
   late JavascriptRuntime jsRuntime;
 
+  // Need setup environment variable LIBQUICKJSC_PATH = './windows/shared/quickjs_c_bridge.dll'
   setUp(() {
     jsRuntime = getJavascriptRuntime();
   });
@@ -20,6 +18,7 @@ void main() {
   });
 
   test('evaluate javascript', () {
+    print(Platform.environment);
     final result = jsRuntime.evaluate('Math.pow(5,3)');
     print('${result.rawResult}, ${result.stringResult}');
     print(
