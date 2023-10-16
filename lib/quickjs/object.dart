@@ -147,7 +147,7 @@ class _JSObject extends JSRef {
 }
 
 /// JS function wrapper
-class _JSFunction extends _JSObject implements JSInvokable, _IsolateEncodable {
+class _JSFunction extends _JSObject implements JSInvokable, _IsolateEncodable, JSRefLeakable {
   _JSFunction(Pointer<JSContext> ctx, Pointer<JSValue> val) : super(ctx, val);
 
   @override

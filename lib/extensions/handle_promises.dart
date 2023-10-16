@@ -78,7 +78,7 @@ extension HandlePromises on JavascriptRuntime {
       FLUTTER_NATIVEJS_MakeQuerablePromise;
     """);
 
-    localContext['makeQuerablePromise'] = fnResult.rawResult;
+    //localContext['makeQuerablePromise'] = fnResult.rawResult;
   }
 
   bool isPendingPromise(int idx) {
