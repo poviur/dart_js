@@ -20,6 +20,10 @@ class FlutterJsPlugin: FlutterPlugin, MethodCallHandler {
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_js")
     channel.setMethodCallHandler(this)
+    try {
+      System.loadLibrary('libfastdev_quickjs_runtime')
+
+    }
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
