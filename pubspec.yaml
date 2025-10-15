@@ -7,16 +7,13 @@ repository: https://github.com/abner/flutter_js
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.0.0"
 dependencies:
-  flutter:
-    sdk: flutter
   ffi: ^2.0.0
+  meta: ^1.16.0
   http: ^1.0.0
   sync_http: ^0.3.0
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  test: ^1.17.3
 
 flutter:
   plugin:

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 import 'package:flutter_js/javascript_runtime.dart';
 import 'package:flutter_js/javascriptcore/jscore_runtime.dart';
 
@@ -26,7 +26,7 @@ export 'quickjs-sync-server/quickjs_oasis_jsbridge.dart';
 // - https://github.com/creativecreatorormaybenot/wakelock/blob/master/wakelock/lib/wakelock.dart
 JavascriptRuntime getJavascriptRuntime({
   bool forceJavascriptCoreOnAndroid = false,
-  bool xhr = true,
+  bool xhr = false,
   Map<String, dynamic>? extraArgs = const {},
 }) {
   JavascriptRuntime runtime;
@@ -59,24 +59,25 @@ JavascriptRuntime getJavascriptRuntime({
 
 final Map<int?, FlutterJs> _engineMap = {};
 
-MethodChannel _methodChannel = const MethodChannel('io.abner.flutter_js')
-  ..setMethodCallHandler((MethodCall call) {
-    if (call.method == "sendMessage") {
-      final engineId = call.arguments[0] as int?;
-      final channel = call.arguments[1] as String?;
-      final message = call.arguments[2] as String?;
-
-      if (_engineMap[engineId] != null) {
-        return _engineMap[engineId]!.onMessageReceived(
-          channel,
-          message,
-        );
-      } else {
-        return Future.value('Error: no engine found with id: $engineId');
-      }
-    }
-    return Future.error('No method "${call.method}" was found!');
-  });
+dynamic _methodChannel;
+// MethodChannel _methodChannel = const MethodChannel('io.abner.flutter_js')
+//   ..setMethodCallHandler((MethodCall call) {
+//     if (call.method == "sendMessage") {
+//       final engineId = call.arguments[0] as int?;
+//       final channel = call.arguments[1] as String?;
+//       final message = call.arguments[2] as String?;
+//
+//       if (_engineMap[engineId] != null) {
+//         return _engineMap[engineId]!.onMessageReceived(
+//           channel,
+//           message,
+//         );
+//       } else {
+//         return Future.value('Error: no engine found with id: $engineId');
+//       }
+//     }
+//     return Future.error('No method "${call.method}" was found!');
+//   });
 
 bool messageHandlerRegistered = false;
 

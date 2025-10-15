@@ -1,11 +1,9 @@
 import 'package:flutter_js/extensions/fetch.dart';
 import 'package:flutter_js/extensions/xhr.dart';
 import 'package:flutter_js/flutter_js.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-
   late JavascriptRuntime jsRuntime;
 
   setUp(() {
