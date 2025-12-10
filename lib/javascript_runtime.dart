@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi';
 
-import 'package:meta/meta.dart';
-
 import 'js_eval_result.dart';
+import 'package:meta/meta.dart';
 
 class FlutterJsPlatformEmpty extends JavascriptRuntime {
   @override

@@ -184,7 +184,7 @@ class _RuntimeOpaque {
 
 final Map<Pointer<JSRuntime>, _RuntimeOpaque> runtimeOpaques = Map();
 
-Pointer<JSValue>? channelDispacher(
+Pointer<JSValue> channelDispacher(
   Pointer<JSContext> ctx,
   int type,
   Pointer<JSValue> argv,
@@ -192,7 +192,7 @@ Pointer<JSValue>? channelDispacher(
   final rt = type == JSChannelType.FREE_OBJECT
       ? ctx.cast<JSRuntime>()
       : jsGetRuntime(ctx);
-  return runtimeOpaques[rt]?._channel(ctx, type, argv);
+  return runtimeOpaques[rt]!._channel(ctx, type, argv);
 }
 
 Pointer<JSRuntime> jsNewRuntime(
@@ -248,9 +248,8 @@ void jsFreeRuntime(
   final referenceleak = <String>[];
   final opaque = runtimeOpaques[rt];
   if (opaque != null) {
-    while (true) {
-      final ref = opaque._ref.firstWhereOrNull((ref) => ref is JSRefLeakable);
-      if (ref == null) break;
+    while (opaque._ref.isNotEmpty) {
+      final ref = opaque._ref.first;
       ref.destroy();
       runtimeOpaques[rt]?._ref.remove(ref);
     }

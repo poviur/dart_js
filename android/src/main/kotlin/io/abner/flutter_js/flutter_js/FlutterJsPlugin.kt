@@ -7,7 +7,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** FlutterJsPlugin */
 class FlutterJsPlugin: FlutterPlugin, MethodCallHandler {
@@ -21,9 +20,9 @@ class FlutterJsPlugin: FlutterPlugin, MethodCallHandler {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_js")
     channel.setMethodCallHandler(this)
     try {
-      System.loadLibrary('libfastdev_quickjs_runtime')
-
+      System.loadLibrary("libfastdev_quickjs_runtime")
     }
+    finally {}
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
